@@ -26,8 +26,10 @@
     "chalk": "^1.1.0",
     "github-search-api": "0.0.3",
     "inquirer-bluebird": "^1.0.1",
+    "kexec": "^1.2.0",
     "lodash": "^3.10.1",
     "minimist": "^1.1.3",
-    "opn": "^3.0.2"
+    "opn": "^3.0.2",
+    "spawn-args": "^0.1.0"
   }
 }
