@@ -1,23 +1,42 @@
 #!/usr/bin/env node
 
 var inquirer = require('inquirer-bluebird');
+var _ = require('lodash');
+
+var config = require('./lib/utils/config');
+
+var github = {
+  name: 'github',
+  value: function() {
+    return require('./lib/github/main')();
+  }
+};
+
+var links = _.map(config.data.links, function(url, name) {
+  return {
+    name: name,
+    value: function() {
+      console.log('opening ' + url);
+      require('opn')(url);
+    }
+  };
+});
+
+links.push({
+  name: 'Add link',
+  value: function() {
+    return require('./lib/utils/links-prompt')();
+  }
+});
 
 inquirer.prompt({
   type: 'list',
-  name: 'service',
+  name: 'action',
   message: 'Select service',
   choices: [
-    'github',
-    new inquirer.Separator(),
-    'google-analytics',
-    'google-webmaster'
-  ]
+    github,
+    new inquirer.Separator()
+  ].concat(links)
 }).then(function(result) {
-  if (result.service === 'github') {
-    require('./lib/github/main')();
-  } else if (result.service === 'google-analytics') {
-    require('./lib/utils/open-url')('google-analytics');
-  } else if (result.service === 'google-webmaster') {
-    require('./lib/utils/open-url')('google-webmaster');
-  }
+  result.action();
 });
