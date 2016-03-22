@@ -1,5 +1,7 @@
 # watchtower-cli
 
+Deprecation notice: implemented as a part of https://github.com/ewnd9/the-feed now
+
 ## Install
 
 ```
