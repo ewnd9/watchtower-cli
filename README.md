@@ -4,9 +4,7 @@ Deprecation notice: implemented as a part of https://github.com/ewnd9/the-feed n
 
 ## Install
 
-```
-$ npm install watchtower-cli
-```
+The `watchtower-cli` package was manually unpublished from npm on 2025-08-28. The name has been released for potential future use.
 
 ## Usage
 
